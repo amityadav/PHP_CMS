@@ -1,0 +1,292 @@
+.title {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+    padding-left:5px;
+	padding-right:5px;
+	padding-bottom: 7px;
+}
+
+.titleRed {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: red;
+    padding-left:5px;
+	padding-right:5px;
+	padding-bottom: 7px;
+}
+
+.titlebold {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 12px;
+    padding-left:5px;
+	padding-right:5px;
+	padding-bottom: 7px;
+}
+
+
+.titleboldRed {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 12px;
+    padding-left:5px;
+	padding-right:5px;
+	padding-bottom: 7px;
+	color: red;
+}
+
+
+.heading {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 24px;
+    padding-left:5px;
+	padding-right:5px;
+	padding-bottom: 7px;
+	color: #F62A68;
+}
+
+
+.selectBox
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 02px;
+	border-left-width: 0px;
+	background-color: #FFFFFF;
+}
+
+.textField
+{
+	font-family: verdana,Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	background-color: #ffffff;
+	padding-top:2px;
+	padding-left:2px;
+	padding-right:2px;
+	padding-bottom:2px;
+	border-right-width:1px;
+	border-left-width:1px;
+	border-top-width:1px;	
+	border-bottom-width: 1px;
+	border-right-color: #999998;
+	border-bottom-color: #999998;
+	border-top-color: #999998;
+	border-left-color: #999998;
+	border-top-style: solid;	
+	border-left-style: solid;	
+	border-right-style: solid;	
+	border-bottom-style: solid;	
+}
+
+input.commonButton
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #FFFFFF;
+	background-color: #A3B181;
+	background-image: url(images/copybg3.png);
+	border: none;
+	font-weight: bold;
+	height: 20px;
+}
+
+input.commonButtonLight
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #931815;
+	background-color: #eeeeee;
+	background-image: url(images/tit_1.gif);
+	border: none;
+	font-weight: bold;
+	height: 16px;
+}
+
+input.commonButtonGreen
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #FFFFFF;
+	background-color: #eeeeee;
+	background-image: url(images/bt_02.gif);
+	border: none;
+	font-weight: bold;
+	height: 16px;
+}
+
+input.commonButtonBrown
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #FFFFFF;
+	background-color: #eeeeee;
+	background-image: url(images/bt_08.gif);
+	border: none;
+	font-weight: bold;
+	height: 16px;
+}
+
+
+.trRed
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #A3B181;
+}
+
+.trEven
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	background-color: #E7EED7;
+}
+
+.trOdd
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	background-color: #FFFFFF;
+}
+
+.trClass
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+}
+
+.trWhiteOdd
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	background-color: #FFFFFF;
+}
+
+.trRedEven
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	background-color: #FFF4F4;
+}
+
+.trBrown
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #FFFFFF;
+	background-color: #B7A841;
+}
+.trMakeParent
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	/*font-weight: bold;*/
+	color: #000000;
+	background-color: #CFE3C0;
+}
+
+.trBrownOdd
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #000000;
+	background-color: #F1EFDF;
+}
+
+.trBrownEven
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	background-color: #FEFCEC;
+}
+
+.trGreen
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #FFFFFF;
+	background-color: #06995F;
+}
+.trGreenOdd
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	background-color: #CDEBDF;
+}
+
+.trGreenEven
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	background-color: #EAF9F3;
+}
+
+.trblue
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #000000;
+	background-color: #B9DCEC;
+}
+
+.trblueOdd
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #000000;
+	/*background-color: #EBEBEB;*/
+}
+
+.textSimple { 
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+    background-color: #000000;
+}
+
+.fontRed
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #C32F2B;
+}
+
+.fontBlue
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #0C8DFF;
+}
+
+.linkDecoration {
+   font-family: Verdana, Arial, Helvetica, sans-serif;
+   font-size: 11px;
+   color: #F62A68;
+   text-decoration: none; 
+}
+
+
+.trBlueLine
+{
+	background-image: url(../images/3d.gif);
+	background-repeat: repeat-x;
+}
+.trWhiteLine
+{
+	background-image: url(../images/3d.gif);
+	background-repeat: repeat-x;/*font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 1px;
+	color: #000000;
+	background-color: #FFFFFF;
+	height: 1px;*/
+}

@@ -1,0 +1,22 @@
+<HTML>
+<BODY>
+<H1 unselectable="on">Creating a Link and Retrieving the URL</H1>
+<script>
+function AddLink()
+{//Identify selected text
+var sText = document.selection.createRange();
+if (!sText==""){
+    //Create link
+     document.execCommand("CreateLink",true);
+  }
+else{
+    alert("Please select some blue text!");
+  }   
+}
+</script>
+<P unselectable="on">Select any portion of the following blue text, such as "My favorite Web site". Click the button to turn the selected text into a link. The text will be changed to the URL that you specify.</P>
+<P style="color=#3366CC">My favorite Web site is worth clicking on. Don't forget to check out my favorite music group!</P>
+
+<BUTTON onclick="AddLink()" unselectable="on">Click to add link</BUTTON>
+</BODY>
+</HTML>

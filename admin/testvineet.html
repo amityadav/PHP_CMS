@@ -1,0 +1,620 @@
+ 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript">
+	var djConfig = {isDebug: false, debugAtAllCosts: false};
+</script>
+<script type="text/javascript" src="dojo.js"></script>
+<script language="JavaScript" type="text/javascript">
+	dojo.require("dojo.widget.FisheyeList");
+	dojo.require("dojo.dnd.*");
+	dojo.require("dojo.event.*");
+	dojo.hostenv.writeIncludes();
+
+	var dropObjectId;
+	var dropObjectType;
+	var dragObjectHasChild;
+
+	var dragObjectId;	
+	var dragObjectType;
+	var dropObjectHasChild;
+
+             function initdnd() 
+	     {
+                 var table_node = document.getElementById("droptable");
+                 var drop_target = new dojo.dnd.HtmlDropTarget(table_node, ["dragDrop"]);
+                 var tr_nodes = document.getElementsByTagName("tbody");
+                
+		 for(var counter = 0; counter < tr_nodes.length; counter++) 
+		 {
+                     if(tr_nodes[counter].id != "")
+		     {
+			new dojo.dnd.HtmlDragSource(tr_nodes[counter], "dragDrop");
+			new dojo.dnd.HtmlDropTarget(tr_nodes[counter], "dragDrop");
+		     }
+                 }
+                 
+		 		 
+		 dojo.event.connect(drop_target, "onDrop", function(e)
+							   {
+								//alert(e.dropTarget.nodeName);
+							   }
+				   )
+
+
+             }
+
+             dojo.event.connect(dojo, "loaded", "initdnd");
+
+	     function getObjectsDND()
+	     {
+		//if(dropObjectId != "")
+		//alert("Object Dropped On " + dropObjectId + " " + dropObjectType);
+		
+		//alert("Object Draged " + dragObjectId + " " + dragObjectType);
+		
+		alert("The " + dragObjectType + " row with id " + dragObjectId + " has been dropped on " +  dropObjectType + " row with id " + dropObjectId + " which has child " + dropObjectHasChild);
+		
+		parentChildTransfer(dragObjectId,dropObjectId,dragObjectType,dropObjectType);
+
+	     }
+</script>
+
+<script>
+	function load_app(id){
+		if(id == 1)
+		{
+			showAdd();	
+		}
+	}
+</script>
+
+<style>
+
+.dojoHtmlFisheyeListBar {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.outerbar {
+	background-color: #A3B181;
+	text-align: center;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	padding: 0;
+	margin: 0;
+}
+
+.page {
+	padding: 60px 20px 20px 20px;
+}
+
+</style>
+
+<div class="outerbar">
+
+<div class="dojo-FisheyeList"
+	dojo:itemWidth="50" dojo:itemHeight="50"
+	dojo:itemMaxWidth="200" dojo:itemMaxHeight="200"
+	dojo:orientation="horizontal"
+	dojo:effectUnits="2"
+	dojo:itemPadding="10"
+	dojo:attachEdge="top"
+	dojo:labelEdge="bottom"
+	dojo:enableCrappySvgSupport="false"
+>
+
+	<div class="dojo-FisheyeListItem" onClick="window.location = 'adminarea.php';" 
+		dojo:iconsrc="images/icon_browser.png" caption="Manage Pages">
+	</div>
+
+	<div class="dojo-FisheyeListItem" onClick="window.location = 'changepassword.php';"
+		dojo:iconsrc="images/icon_texteditor.png" caption="Change Password">
+	</div>
+			<div class="dojo-FisheyeListItem" onClick="window.location = 'addpage.php'"
+			dojo:iconsrc="images/icon_calendar.png" caption="Add New Page">
+		</div>
+
+		<div class="dojo-FisheyeListItem" onClick="window.location = 'addsubpage.php'"
+			dojo:iconsrc="images/gdict_big.png" caption="Add New Sub-Page">
+		</div>
+	
+	<div class="dojo-FisheyeListItem" onClick="window.location = 'logout.php';"
+		dojo:iconsrc="images/icon_users.png" caption="Logout">
+	</div>
+</div>
+
+</div>
+<body topmargin="0" leftmargin="0"  background="http://ipi-0228/vineet/Submenu/admin/images/bg.jpg">
+
+
+
+
+
+<head>
+<title>
+	Admin Area</title>
+</head>
+<body topmargin="0" leftmargin="0"  background="http://ipi-0228/vineet/Submenu/admin/images/bg.gif">
+<table width="100%" border="0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td class="heading" valign="top"><BR><BR></td>
+  </tr>
+  <tr>
+
+    <td></td>
+  </tr>
+</table>
+ <tr class="title">
+    <td>
+		<form name="frmPageList">
+		<div id="tablePages" class="title">
+<table width="97%" border="0" cellpadding="4" cellspacing="0" style="border: 1px solid #CFCFCF" align="center"><tr valign="top"><td class="trRed">Status</td>
+					<td class="trRed"><input type="checkbox" name="checkall" onClick="javascript:check_all();"></td><td class="trRed">Page Name</td><td  class="trRed">Order</td><td colspan="1" class="trRed">Edit</td><td colspan="1" class="trRed">Delete</td><td colspan="1" class="trRed">Preview</td></tr><tr><td colspan="10"><table width="100%" border="0" cellpadding="4" cellspacing="0" style="align="center" id="droptable"><tbody isParent ="1" rowType="parent_1_1"  id ="dnd_1"><tr valign="top" class="trEven"><td width="15%" id="isActive1"><font color="red">Enable</font></td>
+								<td width="5%"><input type="checkbox" id="checkall_0"  name="checkall_0" value="1" ></td><td width="40%"><font color="red"><b>Huis</b></font></td><td width="15%">
+						<table width="40%" border="0">
+						<tr>
+						<td width="50%" class="trEven"></td><td width="50%" class="<?=$class?>"><a href="changeorder.php?listOrder=1&identifier=0&pageId=1"><img  border="0" src="images/down.png" title="Move Down"></a></td>
+						</tr>
+						</table>
+						</td><td width="15%"><a href = "editcontent.php?content=1&from=m" style="text-decoration:none" class="trEven" title="Edit Page Content"><img src="images/b_edit.png" border="0"></a></td><td width="15%"><a href="javascript:void(0);"onClick="deletePage('1', '1')" title="Delete Page"><img src="images/trash.gif" border="0" alt="Delete Page"></a></td><td width="10%"><a href ="../index.php?_p_=1" class="trEven" style="text-decoration:none" target="_blank" title="Preview"><img src="images/preview.gif" border="0" alt="Preview"></a></td></tr></tbody><tbody  isParent ="0" rowType="child_26_0" id ="dnd_26"><tr valign="top" class="trOdd"><td width="15%" id="isActive26">Enable</td><td width="5%"><input type="checkbox" id="checkall_1"  name="checkall_1" value="26" ></td><td width="40%" style="margin-left:10px">&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/right.jpg" border="0">&nbsp;&nbsp;Diesel</td><td width="15%">
+						<table width="40%" border="0">
+						<tr>
+						<td width="50%" class="trOdd"></td><td width="50%" class="<?=$class?>"><a href="changeorder.php?child_listOrder=1&identifier=0&pageId=26"><img  border="0" src="images/down.jpg" title="Move Down"></a></td>
+						</tr>
+						</table>
+						</td><td width="15%"><a href = "editsubpagecontent.php?content=26&from=m" style="text-decoration:none" class="trOdd" title="Edit Page Content"><img src="images/b_edit.png" border="0"></a></td><td width="15%"><a href="javascript:void(0);"onClick="deletePage('26', '0')" title="Delete Page"><img src="images/trash.gif" border="0" alt="Delete Page"></a></td><td width="10%"><a href ="../index.php?_p_=26" class="trOdd" style="text-decoration:none" target="_blank" title="Preview"><img src="images/preview.gif" border="0" alt="Preview"></a></td></tr></tbody><tbody  isParent ="0" rowType="child_27_0" id ="dnd_27"><tr valign="top" class="trEven"><td width="15%" id="isActive27">Enable</td><td width="5%"><input type="checkbox" id="checkall_2"  name="checkall_2" value="27" ></td><td width="40%" style="margin-left:10px">&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/right.jpg" border="0">&nbsp;&nbsp;Fossil</td><td width="15%">
+						<table width="40%" border="0">
+						<tr>
+						<td width="50%" class="trEven"><a href="changeorder.php?child_listOrder=2&identifier=1&pageId=27">	<img border="0" src="images/up.jpg" title="Move Up"></a></td><td width="50%" class="<?=$class?>"></td>
+						</tr>
+						</table>
+						</td><td width="15%"><a href = "editsubpagecontent.php?content=27&from=m" style="text-decoration:none" class="trEven" title="Edit Page Content"><img src="images/b_edit.png" border="0"></a></td><td width="15%"><a href="javascript:void(0);"onClick="deletePage('27', '0')" title="Delete Page"><img src="images/trash.gif" border="0" alt="Delete Page"></a></td><td width="10%"><a href ="../index.php?_p_=27" class="trEven" style="text-decoration:none" target="_blank" title="Preview"><img src="images/preview.gif" border="0" alt="Preview"></a></td></tr></tbody><tbody isParent ="1" rowType="parent_33_1"  id ="dnd_33"><tr valign="top" class="trOdd"><td width="15%" id="isActive33"><font color="red">Enable</font></td>
+								<td width="5%"><input type="checkbox" id="checkall_3"  name="checkall_3" value="33" ></td><td width="40%"><font color="red"><b>Nieuws</b></font></td><td width="15%">
+						<table width="40%" border="0">
+						<tr>
+						<td width="50%" class="trOdd"><a href="changeorder.php?listOrder=2&identifier=1&pageId=33">	<img border="0" src="images/up.png" title="Move Up"></a></td><td width="50%" class="<?=$class?>"><a href="changeorder.php?listOrder=2&identifier=0&pageId=33"><img  border="0" src="images/down.png" title="Move Down"></a></td>
+						</tr>
+						</table>
+						</td><td width="15%"><a href = "editcontent.php?content=33&from=m" style="text-decoration:none" class="trOdd" title="Edit Page Content"><img src="images/b_edit.png" border="0"></a></td><td width="15%"><a href="javascript:void(0);"onClick="deletePage('33', '1')" title="Delete Page"><img src="images/trash.gif" border="0" alt="Delete Page"></a></td><td width="10%"><a href ="../index.php?_p_=33" class="trOdd" style="text-decoration:none" target="_blank" title="Preview"><img src="images/preview.gif" border="0" alt="Preview"></a></td></tr></tbody><tbody  isParent ="0" rowType="child_25_0" id ="dnd_25"><tr valign="top" class="trEven"><td width="15%" id="isActive25">Enable</td><td width="5%"><input type="checkbox" id="checkall_4"  name="checkall_4" value="25" ></td><td width="40%" style="margin-left:10px">&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/right.jpg" border="0">&nbsp;&nbsp;DKNY</td><td width="15%">
+						<table width="40%" border="0">
+						<tr>
+						<td width="50%" class="trEven"></td><td width="50%" class="<?=$class?>"><a href="changeorder.php?child_listOrder=3&identifier=0&pageId=25"><img  border="0" src="images/down.jpg" title="Move Down"></a></td>
+						</tr>
+						</table>
+						</td><td width="15%"><a href = "editsubpagecontent.php?content=25&from=m" style="text-decoration:none" class="trEven" title="Edit Page Content"><img src="images/b_edit.png" border="0"></a></td><td width="15%"><a href="javascript:void(0);"onClick="deletePage('25', '0')" title="Delete Page"><img src="images/trash.gif" border="0" alt="Delete Page"></a></td><td width="10%"><a href ="../index.php?_p_=25" class="trEven" style="text-decoration:none" target="_blank" title="Preview"><img src="images/preview.gif" border="0" alt="Preview"></a></td></tr></tbody><tbody  isParent ="0" rowType="child_24_0" id ="dnd_24"><tr valign="top" class="trOdd"><td width="15%" id="isActive24">Enable</td><td width="5%"><input type="checkbox" id="checkall_5"  name="checkall_5" value="24" ></td><td width="40%" style="margin-left:10px">&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/right.jpg" border="0">&nbsp;&nbsp;DAVIS</td><td width="15%">
+						<table width="40%" border="0">
+						<tr>
+						<td width="50%" class="trOdd"><a href="changeorder.php?child_listOrder=5&identifier=1&pageId=24">	<img border="0" src="images/up.jpg" title="Move Up"></a></td><td width="50%" class="<?=$class?>"><a href="changeorder.php?child_listOrder=5&identifier=0&pageId=24"><img  border="0" src="images/down.jpg" title="Move Down"></a></td>
+						</tr>
+						</table>
+						</td><td width="15%"><a href = "editsubpagecontent.php?content=24&from=m" style="text-decoration:none" class="trOdd" title="Edit Page Content"><img src="images/b_edit.png" border="0"></a></td><td width="15%"><a href="javascript:void(0);"onClick="deletePage('24', '0')" title="Delete Page"><img src="images/trash.gif" border="0" alt="Delete Page"></a></td><td width="10%"><a href ="../index.php?_p_=24" class="trOdd" style="text-decoration:none" target="_blank" title="Preview"><img src="images/preview.gif" border="0" alt="Preview"></a></td></tr></tbody><tbody  isParent ="0" rowType="child_23_0" id ="dnd_23"><tr valign="top" class="trEven"><td width="15%" id="isActive23">Enable</td><td width="5%"><input type="checkbox" id="checkall_6"  name="checkall_6" value="23" ></td><td width="40%" style="margin-left:10px">&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/right.jpg" border="0">&nbsp;&nbsp;U-BOAT</td><td width="15%">
+						<table width="40%" border="0">
+						<tr>
+						<td width="50%" class="trEven"><a href="changeorder.php?child_listOrder=6&identifier=1&pageId=23">	<img border="0" src="images/up.jpg" title="Move Up"></a></td><td width="50%" class="<?=$class?>"></td>
+						</tr>
+						</table>
+						</td><td width="15%"><a href = "editsubpagecontent.php?content=23&from=m" style="text-decoration:none" class="trEven" title="Edit Page Content"><img src="images/b_edit.png" border="0"></a></td><td width="15%"><a href="javascript:void(0);"onClick="deletePage('23', '0')" title="Delete Page"><img src="images/trash.gif" border="0" alt="Delete Page"></a></td><td width="10%"><a href ="../index.php?_p_=23" class="trEven" style="text-decoration:none" target="_blank" title="Preview"><img src="images/preview.gif" border="0" alt="Preview"></a></td></tr></tbody><tbody isParent ="1" rowType="parent_2_1"  id ="dnd_2"><tr valign="top" class="trOdd"><td width="15%" id="isActive2"><font color="red">Enable</font></td>
+								<td width="5%"><input type="checkbox" id="checkall_7"  name="checkall_7" value="2" ></td><td width="40%"><font color="red"><b>Horloges</b></font></td><td width="15%">
+						<table width="40%" border="0">
+						<tr>
+						<td width="50%" class="trOdd"><a href="changeorder.php?listOrder=3&identifier=1&pageId=2">	<img border="0" src="images/up.png" title="Move Up"></a></td><td width="50%" class="<?=$class?>"><a href="changeorder.php?listOrder=3&identifier=0&pageId=2"><img  border="0" src="images/down.png" title="Move Down"></a></td>
+						</tr>
+						</table>
+						</td><td width="15%"><a href = "editcontent.php?content=2&from=m" style="text-decoration:none" class="trOdd" title="Edit Page Content"><img src="images/b_edit.png" border="0"></a></td><td width="15%"><a href="javascript:void(0);"onClick="deletePage('2', '1')" title="Delete Page"><img src="images/trash.gif" border="0" alt="Delete Page"></a></td><td width="10%"><a href ="../index.php?_p_=2" class="trOdd" style="text-decoration:none" target="_blank" title="Preview"><img src="images/preview.gif" border="0" alt="Preview"></a></td></tr></tbody><tbody  isParent ="0" rowType="child_35_0" id ="dnd_35"><tr valign="top" class="trEven"><td width="15%" id="isActive35">Enable</td><td width="5%"><input type="checkbox" id="checkall_8"  name="checkall_8" value="35" ></td><td width="40%" style="margin-left:10px">&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/right.jpg" border="0">&nbsp;&nbsp;Casio</td><td width="15%">
+						<table width="40%" border="0">
+						<tr>
+						<td width="50%" class="trEven"></td><td width="50%" class="<?=$class?>"><a href="changeorder.php?child_listOrder=6&identifier=0&pageId=35"><img  border="0" src="images/down.jpg" title="Move Down"></a></td>
+						</tr>
+						</table>
+						</td><td width="15%"><a href = "editsubpagecontent.php?content=35&from=m" style="text-decoration:none" class="trEven" title="Edit Page Content"><img src="images/b_edit.png" border="0"></a></td><td width="15%"><a href="javascript:void(0);"onClick="deletePage('35', '0')" title="Delete Page"><img src="images/trash.gif" border="0" alt="Delete Page"></a></td><td width="10%"><a href ="../index.php?_p_=35" class="trEven" style="text-decoration:none" target="_blank" title="Preview"><img src="images/preview.gif" border="0" alt="Preview"></a></td></tr></tbody><tbody  isParent ="0" rowType="child_34_0" id ="dnd_34"><tr valign="top" class="trOdd"><td width="15%" id="isActive34">Enable</td><td width="5%"><input type="checkbox" id="checkall_9"  name="checkall_9" value="34" ></td><td width="40%" style="margin-left:10px">&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/right.jpg" border="0">&nbsp;&nbsp;TW Steel</td><td width="15%">
+						<table width="40%" border="0">
+						<tr>
+						<td width="50%" class="trOdd"><a href="changeorder.php?child_listOrder=7&identifier=1&pageId=34">	<img border="0" src="images/up.jpg" title="Move Up"></a></td><td width="50%" class="<?=$class?>"></td>
+						</tr>
+						</table>
+						</td><td width="15%"><a href = "editsubpagecontent.php?content=34&from=m" style="text-decoration:none" class="trOdd" title="Edit Page Content"><img src="images/b_edit.png" border="0"></a></td><td width="15%"><a href="javascript:void(0);"onClick="deletePage('34', '0')" title="Delete Page"><img src="images/trash.gif" border="0" alt="Delete Page"></a></td><td width="10%"><a href ="../index.php?_p_=34" class="trOdd" style="text-decoration:none" target="_blank" title="Preview"><img src="images/preview.gif" border="0" alt="Preview"></a></td></tr></tbody><tbody isParent ="1" rowType="parent_3_1"  id ="dnd_3"><tr valign="top" class="trEven"><td width="15%" id="isActive3"><font color="red">Enable</font></td>
+								<td width="5%"><input type="checkbox" id="checkall_10"  name="checkall_10" value="3" ></td><td width="40%"><font color="red"><b>Sieraden</b></font></td><td width="15%">
+						<table width="40%" border="0">
+						<tr>
+						<td width="50%" class="trEven"><a href="changeorder.php?listOrder=4&identifier=1&pageId=3">	<img border="0" src="images/up.png" title="Move Up"></a></td><td width="50%" class="<?=$class?>"><a href="changeorder.php?listOrder=4&identifier=0&pageId=3"><img  border="0" src="images/down.png" title="Move Down"></a></td>
+						</tr>
+						</table>
+						</td><td width="15%"><a href = "editcontent.php?content=3&from=m" style="text-decoration:none" class="trEven" title="Edit Page Content"><img src="images/b_edit.png" border="0"></a></td><td width="15%"><a href="javascript:void(0);"onClick="deletePage('3', '1')" title="Delete Page"><img src="images/trash.gif" border="0" alt="Delete Page"></a></td><td width="10%"><a href ="../index.php?_p_=3" class="trEven" style="text-decoration:none" target="_blank" title="Preview"><img src="images/preview.gif" border="0" alt="Preview"></a></td></tr></tbody><tbody  isParent ="0" rowType="child_29_0" id ="dnd_29"><tr valign="top" class="trOdd"><td width="15%" id="isActive29">Enable</td><td width="5%"><input type="checkbox" id="checkall_11"  name="checkall_11" value="29" ></td><td width="40%" style="margin-left:10px">&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/right.jpg" border="0">&nbsp;&nbsp;Fossil</td><td width="15%">
+						<table width="40%" border="0">
+						<tr>
+						<td width="50%" class="trOdd"></td><td width="50%" class="<?=$class?>"><a href="changeorder.php?child_listOrder=2&identifier=0&pageId=29"><img  border="0" src="images/down.jpg" title="Move Down"></a></td>
+						</tr>
+						</table>
+						</td><td width="15%"><a href = "editsubpagecontent.php?content=29&from=m" style="text-decoration:none" class="trOdd" title="Edit Page Content"><img src="images/b_edit.png" border="0"></a></td><td width="15%"><a href="javascript:void(0);"onClick="deletePage('29', '0')" title="Delete Page"><img src="images/trash.gif" border="0" alt="Delete Page"></a></td><td width="10%"><a href ="../index.php?_p_=29" class="trOdd" style="text-decoration:none" target="_blank" title="Preview"><img src="images/preview.gif" border="0" alt="Preview"></a></td></tr></tbody><tbody  isParent ="0" rowType="child_28_0" id ="dnd_28"><tr valign="top" class="trEven"><td width="15%" id="isActive28">Enable</td><td width="5%"><input type="checkbox" id="checkall_12"  name="checkall_12" value="28" ></td><td width="40%" style="margin-left:10px">&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/right.jpg" border="0">&nbsp;&nbsp;Elle</td><td width="15%">
+						<table width="40%" border="0">
+						<tr>
+						<td width="50%" class="trEven"><a href="changeorder.php?child_listOrder=3&identifier=1&pageId=28">	<img border="0" src="images/up.jpg" title="Move Up"></a></td><td width="50%" class="<?=$class?>"><a href="changeorder.php?child_listOrder=3&identifier=0&pageId=28"><img  border="0" src="images/down.jpg" title="Move Down"></a></td>
+						</tr>
+						</table>
+						</td><td width="15%"><a href = "editsubpagecontent.php?content=28&from=m" style="text-decoration:none" class="trEven" title="Edit Page Content"><img src="images/b_edit.png" border="0"></a></td><td width="15%"><a href="javascript:void(0);"onClick="deletePage('28', '0')" title="Delete Page"><img src="images/trash.gif" border="0" alt="Delete Page"></a></td><td width="10%"><a href ="../index.php?_p_=28" class="trEven" style="text-decoration:none" target="_blank" title="Preview"><img src="images/preview.gif" border="0" alt="Preview"></a></td></tr></tbody><tbody  isParent ="0" rowType="child_30_0" id ="dnd_30"><tr valign="top" class="trOdd"><td width="15%" id="isActive30">Enable</td><td width="5%"><input type="checkbox" id="checkall_13"  name="checkall_13" value="30" ></td><td width="40%" style="margin-left:10px">&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/right.jpg" border="0">&nbsp;&nbsp;Z3UZ</td><td width="15%">
+						<table width="40%" border="0">
+						<tr>
+						<td width="50%" class="trOdd"><a href="changeorder.php?child_listOrder=3&identifier=1&pageId=30">	<img border="0" src="images/up.jpg" title="Move Up"></a></td><td width="50%" class="<?=$class?>"><a href="changeorder.php?child_listOrder=3&identifier=0&pageId=30"><img  border="0" src="images/down.jpg" title="Move Down"></a></td>
+						</tr>
+						</table>
+						</td><td width="15%"><a href = "editsubpagecontent.php?content=30&from=m" style="text-decoration:none" class="trOdd" title="Edit Page Content"><img src="images/b_edit.png" border="0"></a></td><td width="15%"><a href="javascript:void(0);"onClick="deletePage('30', '0')" title="Delete Page"><img src="images/trash.gif" border="0" alt="Delete Page"></a></td><td width="10%"><a href ="../index.php?_p_=30" class="trOdd" style="text-decoration:none" target="_blank" title="Preview"><img src="images/preview.gif" border="0" alt="Preview"></a></td></tr></tbody><tbody  isParent ="0" rowType="child_31_0" id ="dnd_31"><tr valign="top" class="trEven"><td width="15%" id="isActive31">Enable</td><td width="5%"><input type="checkbox" id="checkall_14"  name="checkall_14" value="31" ></td><td width="40%" style="margin-left:10px">&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/right.jpg" border="0">&nbsp;&nbsp;Zoppini</td><td width="15%">
+						<table width="40%" border="0">
+						<tr>
+						<td width="50%" class="trEven"><a href="changeorder.php?child_listOrder=4&identifier=1&pageId=31">	<img border="0" src="images/up.jpg" title="Move Up"></a></td><td width="50%" class="<?=$class?>"><a href="changeorder.php?child_listOrder=4&identifier=0&pageId=31"><img  border="0" src="images/down.jpg" title="Move Down"></a></td>
+						</tr>
+						</table>
+						</td><td width="15%"><a href = "editsubpagecontent.php?content=31&from=m" style="text-decoration:none" class="trEven" title="Edit Page Content"><img src="images/b_edit.png" border="0"></a></td><td width="15%"><a href="javascript:void(0);"onClick="deletePage('31', '0')" title="Delete Page"><img src="images/trash.gif" border="0" alt="Delete Page"></a></td><td width="10%"><a href ="../index.php?_p_=31" class="trEven" style="text-decoration:none" target="_blank" title="Preview"><img src="images/preview.gif" border="0" alt="Preview"></a></td></tr></tbody><tbody  isParent ="0" rowType="child_32_0" id ="dnd_32"><tr valign="top" class="trOdd"><td width="15%" id="isActive32">Enable</td><td width="5%"><input type="checkbox" id="checkall_15"  name="checkall_15" value="32" ></td><td width="40%" style="margin-left:10px">&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/right.jpg" border="0">&nbsp;&nbsp;Persoonlijk Sieraad</td><td width="15%">
+						<table width="40%" border="0">
+						<tr>
+						<td width="50%" class="trOdd"><a href="changeorder.php?child_listOrder=5&identifier=1&pageId=32">	<img border="0" src="images/up.jpg" title="Move Up"></a></td><td width="50%" class="<?=$class?>"></td>
+						</tr>
+						</table>
+						</td><td width="15%"><a href = "editsubpagecontent.php?content=32&from=m" style="text-decoration:none" class="trOdd" title="Edit Page Content"><img src="images/b_edit.png" border="0"></a></td><td width="15%"><a href="javascript:void(0);"onClick="deletePage('32', '0')" title="Delete Page"><img src="images/trash.gif" border="0" alt="Delete Page"></a></td><td width="10%"><a href ="../index.php?_p_=32" class="trOdd" style="text-decoration:none" target="_blank" title="Preview"><img src="images/preview.gif" border="0" alt="Preview"></a></td></tr></tbody><tbody isParent ="1" rowType="parent_5_0"  id ="dnd_5"><tr valign="top" class="trEven"><td width="15%" id="isActive5"><font color="red">Enable</font></td>
+								<td width="5%"><input type="checkbox" id="checkall_16"  name="checkall_16" value="5" ></td><td width="40%"><font color="red"><b>Pandora</b></font></td><td width="15%">
+						<table width="40%" border="0">
+						<tr>
+						<td width="50%" class="trEven"><a href="changeorder.php?listOrder=5&identifier=1&pageId=5">	<img border="0" src="images/up.png" title="Move Up"></a></td><td width="50%" class="<?=$class?>"><a href="changeorder.php?listOrder=5&identifier=0&pageId=5"><img  border="0" src="images/down.png" title="Move Down"></a></td>
+						</tr>
+						</table>
+						</td><td width="15%"><a href = "editcontent.php?content=5&from=m" style="text-decoration:none" class="trEven" title="Edit Page Content"><img src="images/b_edit.png" border="0"></a></td><td width="15%"><a href="javascript:void(0);"onClick="deletePage('5', '1')" title="Delete Page"><img src="images/trash.gif" border="0" alt="Delete Page"></a></td><td width="10%"><a href ="../index.php?_p_=5" class="trEven" style="text-decoration:none" target="_blank" title="Preview"><img src="images/preview.gif" border="0" alt="Preview"></a></td></tr></tbody><tbody isParent ="1" rowType="parent_6_0"  id ="dnd_6"><tr valign="top" class="trOdd"><td width="15%" id="isActive6"><font color="red">Enable</font></td>
+								<td width="5%"><input type="checkbox" id="checkall_17"  name="checkall_17" value="6" ></td><td width="40%"><font color="red"><b>Contact Ons</b></font></td><td width="15%">
+						<table width="40%" border="0">
+						<tr>
+						<td width="50%" class="trOdd"><a href="changeorder.php?listOrder=6&identifier=1&pageId=6">	<img border="0" src="images/up.png" title="Move Up"></a></td><td width="50%" class="<?=$class?>"></td>
+						</tr>
+						</table>
+						</td><td width="15%"><a href = "editcontent.php?content=6&from=m" style="text-decoration:none" class="trOdd" title="Edit Page Content"><img src="images/b_edit.png" border="0"></a></td><td width="15%"><a href="javascript:void(0);"onClick="deletePage('6', '1')" title="Delete Page"><img src="images/trash.gif" border="0" alt="Delete Page"></a></td><td width="10%"><a href ="../index.php?_p_=6" class="trOdd" style="text-decoration:none" target="_blank" title="Preview"><img src="images/preview.gif" border="0" alt="Preview"></a></td></tr></tbody></table></td></tr><tr valign="top" class="trRed" ><td colspan="7" class="trRed"><a href="javascript:enablePage()" title="Enable"><font color="#FFFFFF">Enable</font></a> || <a href="javascript:disablePage()" title="Disable"><font color="#FFFFFF">Disable</font></a></td></tr></table><input type="hidden" name="counterRec" value="18"></div>
+
+		</form>
+    </td>
+  </tr>
+</table>
+<table border=0 cellspacing=0 cellpadding=0 align=center>
+  <tr class="titlebold">
+    <td>&nbsp;</td>
+  </tr>
+  <tr class="titlebold">
+    <td><hr width="400" color="#F8E6E6"></td>
+
+  </tr>
+  <tr class="">
+    <td><div align="center"><font color="#FF0000" size="1" face="Verdana, Arial, Helvetica, sans-serif">Copyright © 2006 <a href="http://amityadav.name">Amityadav.name</a></font></div></td>
+  </tr>
+</table>
+</body></body>
+
+
+
+<script>
+var f = document.frmPageList;
+
+function moveUp(rowOrder, pageid)
+{
+	functXHR(rowOrder, 1, pageid);
+}
+
+
+function moveDown(rowOrder, pageid)
+{
+	functXHR(rowOrder, 0, pageid);
+}
+
+
+//Function to handle the order of the page
+function functXHR(rowOrder,identifier, pageid)
+{
+	document.getElementById("tablePages").innerHTML = "Refreshing...<img src='images/ajax-loader.gif' border='0'>";
+	//document.getElementById("errorTab").style.display = "none";
+
+	var url ="changeorder.php";
+	var posData = "?listOrder=" + rowOrder + "&identifier=" + identifier + "&pageId=" + pageid;
+
+	if (window.XMLHttpRequest) { // Mozilla, Safari,...
+		http_request = new XMLHttpRequest();
+		if (http_request.overrideMimeType) {
+			http_request.overrideMimeType('text/xml');
+		}
+	} else if (window.ActiveXObject) { // IE
+		try {
+			http_request = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try {
+				http_request = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (e) {}
+		}
+	}
+
+	http_request.onreadystatechange = function() { getTable(http_request); };
+	http_request.open('GET', url + posData, true);
+	http_request.send(null);
+}
+
+
+function getTable(http_request)
+{
+	if (http_request.readyState == 4) {
+            if (http_request.status == 200)
+			{
+				resText = http_request.responseText;
+
+				document.getElementById("tablePages").innerHTML = resText;
+				//document.write(resText);
+
+            } else {
+                document.getElementById("tablePages").innerHTML = 'Error';
+				alert('There was a problem with the request.');
+            }
+        }
+}
+
+
+
+
+function check_all()
+{
+
+	if(f.checkall.checked == true)
+	{
+			var cnt		= f.counterRec.value;
+			var k=0;
+			var cnst ='';
+			for(i=0;i<cnt;i++)
+			{
+				cnst = eval("f.checkall_" + k);
+				cnst.checked =true;
+				k++;
+			}
+	}
+
+	if(f.checkall.checked==false)
+	{
+			var cnt		= f.counterRec.value;
+			var k=0;
+			var cnst ='';
+			for(i=0;i<cnt;i++)
+			{
+				cnst	= eval("f.checkall_"+k);
+				cnst.checked =false;
+				k++;
+			}
+	}
+}
+
+function uncheck()
+{
+	var cnt		= f.counterRec.value;
+	var k=0;
+	var cnst ='';
+	f.checkall.checked = false;
+	for(i=0;i<cnt;i++)
+	{
+		cnst	= eval("f.checkall_"+k);
+		cnst.checked =false;
+		k++;
+	}
+}
+
+
+function enablePage()
+{
+	var cnt	 = f.counterRec.value;
+	var k=0;
+	var cnst ='';
+	var str = "";
+	var flag = 0;
+
+	for(i=0; i < cnt; i++)
+	{
+		cnst = eval("f.checkall_" + k);
+		if(cnst.checked == true)
+		{
+
+			if(str == "")
+			{
+				str = cnst.value;
+			}else
+			{
+				str = str + "," + cnst.value;
+			}
+			flag = 1;
+		}
+		k++;
+	}
+	if(flag == 1)
+		xmlhttpPost(str, 1);
+	else
+		alert('Please select a page!');
+}
+
+
+function disablePage()
+{
+	var cnt	 = f.counterRec.value;
+	var k=0;
+	var cnst ='';
+	var str = "";
+	var flag = 0;
+
+	for(i=0; i < cnt; i++)
+	{
+		cnst = eval("f.checkall_" + k);
+		if(cnst.checked == true)
+		{
+
+			if(str == "")
+			{
+				str = cnst.value;
+			}else
+			{
+				str = str + "," + cnst.value;
+			}
+			flag = 1;
+		}
+		k++;
+	}
+
+	if(flag == 1)
+		xmlhttpPost(str, 0);
+	else
+		alert('Please select a page!');
+}
+
+
+function xmlhttpPost(id, status) {
+	var strId = id;
+
+	uncheck();
+	strArray1 = strId.split(",");
+	for(j=0; j < strArray1.length; j++)
+	{
+		document.getElementById("isActive" + strArray1[j]).innerHTML = "Refreshing...<img src='images/ajax-loader.gif' border='0'>";
+	}
+
+	var url ="changestatus.php";
+	var posData = "?id=" + id + "&_e=" + status;
+
+
+	if (window.XMLHttpRequest) { // Mozilla, Safari,...
+		http_request = new XMLHttpRequest();
+		if (http_request.overrideMimeType) {
+			http_request.overrideMimeType('text/xml');
+		}
+	} else if (window.ActiveXObject) { // IE
+		try {
+			http_request = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try {
+				http_request = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (e) {}
+		}
+	}
+
+	http_request.onreadystatechange = function() { GetState(http_request); };
+	http_request.open('GET', url + posData, true);
+	http_request.send(null);
+}
+
+
+
+function GetState(http_request){
+
+	if (http_request.readyState == 4) {
+            if (http_request.status == 200)
+			{
+				resText = http_request.responseText;
+				strArray = resText.split(",");
+
+				if(strArray[0] == "e")
+					lbl = 'Enable';
+				else
+					lbl = 'Disable';
+
+				for(i=1; i < strArray.length; i++)
+				{
+					document.getElementById("isActive" + strArray[i]).innerHTML = lbl
+				}
+
+            } else {
+                document.getElementById("isActive" + id).innerHTML = 'Error';
+				alert('There was a problem with the request.');
+            }
+        }
+}
+
+
+
+
+function openWindow(URL)
+{
+	mywindow = window.open (URL,"mywindow","location=0,status=1,scrollbars=1, width=400,height=400");
+	mywindow.focus();
+}
+
+
+
+
+function deletePage(id, chkParent) {
+	if(chkParent == 1)
+	{
+		if(!confirm("If you will delete this page then all its child will be deleted automatically.\nDo you really want to delete this page!"))
+		{
+			return false;
+		}
+	}else{
+		if(!confirm("Do you really want to delete this page!"))
+		{
+			return false;
+		}
+	}
+
+	document.getElementById("tablePages").innerHTML = "Refreshing...<img src='images/ajax-loader.gif' border='0'>";
+	var url ="deletePage.php";
+	var posData = "?id=" + id;
+
+
+	if (window.XMLHttpRequest) { // Mozilla, Safari,...
+		http_request = new XMLHttpRequest();
+		if (http_request.overrideMimeType) {
+			http_request.overrideMimeType('text/xml');
+		}
+	} else if (window.ActiveXObject) { // IE
+		try {
+			http_request = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try {
+				http_request = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (e) {}
+		}
+	}
+
+	http_request.onreadystatechange = function() { getTable(http_request); };
+	http_request.open('GET', url + posData, true);
+	http_request.send(null);
+}
+
+
+/*
+THIS FUNCTION IS TO MAKE TRANSFER BETWEEN PARENT AND CHILD FOR DRAG AND DROP
+*/
+
+
+function parentChildTransfer(dragObjectId,dropObjectId,dragObjectType,dropObjectType)
+{
+
+	document.getElementById("tablePages").innerHTML = "Refreshing...<img src='images/ajax-loader.gif' border='0'>";
+	var url ="parentChildTransfer.php";
+	var posData = "?dragId=" + dragObjectId + "&dropId=" + dropObjectId + "&dragType=" + dragObjectType + "&dropType=" + dropObjectType;
+
+
+	if (window.XMLHttpRequest) { // Mozilla, Safari,...
+		http_request = new XMLHttpRequest();
+		if (http_request.overrideMimeType) {
+			http_request.overrideMimeType('text/xml');
+		}
+	} else if (window.ActiveXObject) { // IE
+		try {
+			http_request = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try {
+				http_request = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (e) {}
+		}
+	}
+
+	http_request.onreadystatechange = function() { getTable(http_request); };
+	http_request.open('GET', url + posData, true);
+	http_request.send(null);
+}
+
+
+</script>
+

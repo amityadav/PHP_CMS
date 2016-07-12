@@ -1,0 +1,120 @@
+body {
+	margin: 0px;
+	background-color: #044772;
+}
+form {
+	margin: 0px;
+}
+.sdw-left {
+	background-image: url(../images/left_sdw.gif);
+	background-repeat: repeat-y;
+	background-position: left top;
+}
+.sdw-right {
+	background-image: url(../images/right_sdw.gif);
+	background-repeat: repeat-y;
+	background-position: right top;
+}
+.main-bg {
+	background-color: #FFFFFF;
+}
+.copyright {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #FFFFFF;
+	background-color: #044772;
+	border: 1px solid #1F6BB6;
+	padding-right: 16px;
+}
+.lnav {
+	border: 1px solid #1F6BB6;
+	border-bottom: 0px solid #1F6BB6;
+}
+.lnav td {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #044772;
+	text-transform: uppercase;
+	padding-left: 24px;
+	height: 21px;
+	border-bottom: 1px solid #1F6BB6;
+}
+.lnav a{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.lnav a:hover {
+	color: #96BF18;
+	text-decoration: none;
+}
+.logo {
+	border-bottom: 4px solid #96BF18;
+}
+.container {
+	border: 1px solid #044772;
+	padding: 20px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #585858;
+	text-align: justify;
+}
+.head {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #044772;
+	background-color: #96BF18;
+	background-image: url(../images/arrow.gif);
+	background-repeat: no-repeat;
+	background-position: 2px 2px;
+	height: 20px;
+	padding-left: 24px;
+	border: 1px solid #044772;
+	border-bottom: 0px solid #044772;
+}
+.sub-head {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #044772;
+	text-decoration: underline;
+}
+input, textarea, option {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	border: 1px solid #044772;
+}
+.button {
+	font-weight: bold;
+	color: #044772;
+	background-color: #96BF18;
+}
+
+
+/*  default styles - do not edit */
+.clCMEvent{position:absolute; width:99%; height:99%; clip:rect(0,100%,100%,0); left:0; top:0; visibility:visible}
+.clCMAbs{position:absolute; visibility:hidden; left:0; top:0}
+/*  default styles - end */
+  
+/*Style for the background-bar*/
+.clBar{position:absolute; width:10; height:10; background-color:Navy; layer-background-color:Navy; visibility:hidden}
+
+/*Styles for level 0*/
+.clLevel0,.clLevel0over{position:absolute; padding:2px; font-family:tahoma,arial,helvetica; font-size:12px; font-weight:bold}
+.clLevel0{BORDER-RIGHT: #1f6bb6 1px solid;BORDER-TOP: #1f6bb6 1px solid;BORDER-LEFT: #1f6bb6 1px solid;BORDER-BOTTOM: #1f6bb6 0px solid;PADDING-LEFT: 24px;FONT-WEIGHT: bold;FONT-SIZE: 10px;TEXT-TRANSFORM: uppercase;COLOR: #ffffff;BORDER-BOTTOM: #1f6bb6 1px solid;FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;HEIGHT: 21px;BACKGROUND-COLOR: #044772;padding-top:10px;}
+.clLevel0over{BORDER-RIGHT: #1f6bb6 1px solid;BORDER-TOP: #1f6bb6 1px solid;BORDER-LEFT: #1f6bb6 1px solid;BORDER-BOTTOM: #1f6bb6 0px solid;PADDING-LEFT: 24px;FONT-WEIGHT: bold;FONT-SIZE: 10px;TEXT-TRANSFORM: uppercase;COLOR: #96bf18;BORDER-BOTTOM: #1f6bb6 1px solid;FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;HEIGHT: 21px;BACKGROUND-COLOR: #044772;padding-top:10px;cursor:pointer; cursor:hand;}
+.clLevel0border{position:absolute; visibility:hidden; background-color:#006699; layer-background-color:#006699}
+
+/*Styles for level 1*/
+.clLevel1, .clLevel1over{position:absolute; padding:2px; font-family:tahoma, arial,helvetica; font-size:11px; font-weight:bold}
+.clLevel1{BORDER-RIGHT: #1f6bb6 1px solid;BORDER-TOP: #1f6bb6 1px solid;BORDER-LEFT: #1f6bb6 1px solid;BORDER-BOTTOM: #1f6bb6 0px solid;PADDING-LEFT: 24px;FONT-WEIGHT: bold;FONT-SIZE: 10px;TEXT-TRANSFORM: uppercase;COLOR: #ffffff;BORDER-BOTTOM: #1f6bb6 1px solid;FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;HEIGHT: 21px;BACKGROUND-COLOR: #044772;padding-top:10px;}
+.clLevel1over{BORDER-RIGHT: #1f6bb6 1px solid;BORDER-TOP: #1f6bb6 1px solid;BORDER-LEFT: #1f6bb6 1px solid;BORDER-BOTTOM: #1f6bb6 0px solid;PADDING-LEFT: 24px;FONT-WEIGHT: bold;FONT-SIZE: 10px;TEXT-TRANSFORM: uppercase;COLOR: #96bf18;BORDER-BOTTOM: #1f6bb6 1px solid;FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;HEIGHT: 21px;BACKGROUND-COLOR: #044772;padding-top:10px;cursor:pointer; cursor:hand;}
+.clLevel1border{position:absolute; visibility:hidden; background-color:#006699; layer-background-color:#006699}
+
+.clLevel2, .clLevel2over{position:absolute; padding:2px; font-family:tahoma, arial,helvetica; font-size:11px; font-weight:bold}
+.clLevel2{BORDER-RIGHT: #1f6bb6 1px solid;BORDER-TOP: #1f6bb6 1px solid;BORDER-LEFT: #1f6bb6 1px solid;BORDER-BOTTOM: #1f6bb6 0px solid;PADDING-LEFT: 24px;FONT-WEIGHT: bold;FONT-SIZE: 10px;TEXT-TRANSFORM: uppercase;COLOR: #ffffff;BORDER-BOTTOM: #1f6bb6 1px solid;FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;HEIGHT: 21px;BACKGROUND-COLOR: #044772;padding-top:10px;}
+.clLevel2over{BORDER-RIGHT: #1f6bb6 1px solid;BORDER-TOP: #1f6bb6 1px solid;BORDER-LEFT: #1f6bb6 1px solid;BORDER-BOTTOM: #1f6bb6 0px solid;PADDING-LEFT: 24px;FONT-WEIGHT: bold;FONT-SIZE: 10px;TEXT-TRANSFORM: uppercase;COLOR: #96bf18;BORDER-BOTTOM: #1f6bb6 1px solid;FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;HEIGHT: 21px;BACKGROUND-COLOR: #044772;padding-top:10px;cursor:pointer; cursor:hand;}
+.clLevel2border{position:absolute; visibility:hidden; background-color:#006699; layer-background-color:#006699}
